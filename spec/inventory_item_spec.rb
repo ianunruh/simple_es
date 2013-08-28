@@ -60,5 +60,29 @@ module SimpleES
       item.initial_version.should == 3
       item.version.should == 4
     end
+
+    it 'performs deactivation idempotently' do
+      history = [
+        ItemCreated.new(id, name),
+        ItemDeactivated.new(id)
+      ]
+
+      item = InventoryItem.from_history history
+      item.deactivate
+
+      item.changes.should == []
+    end
+
+    it 'performs reactivation idempotently' do
+      history = [
+        ItemCreated.new(id, name)
+      ]
+
+      item = InventoryItem.from_history history
+      item.reactivate
+
+      item.changes.should == []
+    end
+
   end
 end
