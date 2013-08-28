@@ -61,7 +61,7 @@ module SimpleES
       item.version.should == 4
     end
 
-    it 'performs deactivation idempotently' do
+    it 'supports idempotent deactivation' do
       history = [
         ItemCreated.new(id, name),
         ItemDeactivated.new(id)
@@ -73,7 +73,7 @@ module SimpleES
       item.changes.should == []
     end
 
-    it 'performs reactivation idempotently' do
+    it 'supports idempotent reactivation' do
       history = [
         ItemCreated.new(id, name)
       ]

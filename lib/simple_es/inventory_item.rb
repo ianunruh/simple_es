@@ -6,6 +6,7 @@ module SimpleES
       apply(ItemCreated.new(id, name))
     end
 
+    # This is an idempotent operation
     def deactivate
       if @active
         apply(ItemDeactivated.new(id))
@@ -28,6 +29,7 @@ module SimpleES
       apply(ItemsRemoved.new(id, quantity))
     end
 
+    # This is an idempotent operation
     def reactivate
       unless @active
         apply(ItemReactivated.new(id))
