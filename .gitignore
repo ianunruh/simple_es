@@ -1,0 +1,9 @@
+tmp
+.DS_Store
+.yardoc
+.rbx
+.project
+coverage
+doc
+*.gem
+.bundle
